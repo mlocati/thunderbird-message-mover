@@ -46,7 +46,12 @@ function showError(e) {
           })
           .then((moveResult) => {
             if (moveResult === true) {
-              mmOptions.setAutostart(false);
+              mmOptions
+                .setAutostart(false)
+                .then(() => {
+                  window.dispatchEvent(new CustomEvent('messagemover:runstate:changed'));
+                })
+                ;
             }
           })
           .finally(() => {

@@ -103,7 +103,7 @@
     $('#delay-suffix').text(t('seconds'));
     $('label[for="move-subfolders"').text(t('moveSubfolders'));
     $('#move-subfolders')
-      .attr('checked', mmOptions.moveSubfolders)
+      .prop('checked', mmOptions.moveSubfolders)
       .on('input', function () {
         mmOptions
           .setMoveSubfolders(this.checked)
@@ -113,7 +113,7 @@
       ;
     $('label[for="ignore-errors"').text(t('ignoreErrors'));
     $('#ignore-errors')
-      .attr('checked', mmOptions.ignoreErrors)
+      .prop('checked', mmOptions.ignoreErrors)
       .on('input', function () {
         mmOptions
           .setIgnoreErrors(this.checked)
@@ -123,7 +123,7 @@
       ;
     $('label[for="autostart"').text(t('autostart'));
     $('#autostart')
-      .attr('checked', mmOptions.autostart)
+      .prop('checked', mmOptions.autostart)
       .on('input', function () {
         mmOptions
           .setAutostart(this.checked)
@@ -153,7 +153,7 @@
     updateState();
     backgroundPage.addEventListener('messagemover:runstate:changed', () => {
       updateState();
-      $('#autostart').attr('checked', mmOptions.autostart);
+      $('#autostart').prop('checked', mmOptions.autostart);
     });
     let errorTimer = null;
     backgroundPage.addEventListener('messagemover:error', function (e) {
