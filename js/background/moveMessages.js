@@ -37,11 +37,11 @@ async function moveMessages(browser, data, options, checkCancel, progressListene
             page = await browser.messages.continueList(page.id);
         }
         if (checkCancel()) {
-            return;
+            return false;
         }
         for (let message of page.messages) {
             if (checkCancel()) {
-                return;
+                return false;
             }
             if (data.isFirstMessage === false && options.delay > 0) {
                 await new Promise(resolve => setTimeout(resolve, options.delay));
@@ -64,25 +64,28 @@ async function moveMessages(browser, data, options, checkCancel, progressListene
             }
             data.isFirstMessage = false;
             if (checkCancel()) {
-                return;
+                return false;
             }
         }
     }
     if (options.moveSubfolders) {
         for (let subFolder of data.source.folder.subFolders) {
             if (checkCancel()) {
-                return;
+                return false;
             }
             const subData = await createSubData(browser, data, subFolder);
             if (checkCancel()) {
-                return;
+                return false;
             }
-            await moveMessages(browser, subData, options, checkCancel, progressListener);
+            if (await moveMessages(browser, subData, options, checkCancel, progressListener) === false) {
+                return false;
+            }
             if (checkCancel()) {
-                return;
+                return false;
             }
         }
     }
+    return true;
 }
 
 export default moveMessages;

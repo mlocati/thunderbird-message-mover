@@ -44,6 +44,11 @@ function showError(e) {
           .catch((e) => {
             showError(e);
           })
+          .then((moveResult) => {
+            if (moveResult === true) {
+              mmOptions.setAutostart(false);
+            }
+          })
           .finally(() => {
             setRunState(RUNSTATE.STOPPED);
           })

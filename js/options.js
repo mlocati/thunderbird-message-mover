@@ -153,6 +153,7 @@
     updateState();
     backgroundPage.addEventListener('messagemover:runstate:changed', () => {
       updateState();
+      $('#autostart').attr('checked', mmOptions.autostart);
     });
     let errorTimer = null;
     backgroundPage.addEventListener('messagemover:error', function (e) {
