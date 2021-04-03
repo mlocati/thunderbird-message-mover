@@ -24,17 +24,23 @@ async function createSubData(browser, data, subFolder) {
 }
 async function moveMessages(browser, data, options, checkCancel, progressListener) {
     let page = null;
+    const failedMessageIDs = [];
     if (typeof data.isFirstMessage === 'undefined') {
         data.isFirstMessage = true;
     }
     if (!progressListener) {
         progressListener = () => { };
     }
-    while (page === null || page.id) {
+    for (; ;) {
         if (page === null) {
             page = await browser.messages.list(data.source.folder);
-        } else {
+        } else if (page.id) {
             page = await browser.messages.continueList(page.id);
+        } else {
+            page = await browser.messages.list(data.source.folder);
+            if (page.messages.length <= failedMessageIDs.length) {
+                break;
+            }
         }
         if (checkCancel()) {
             return false;
@@ -46,21 +52,19 @@ async function moveMessages(browser, data, options, checkCancel, progressListene
             if (data.isFirstMessage === false && options.delay > 0) {
                 await new Promise(resolve => setTimeout(resolve, options.delay));
             }
-            progressListener({ type: 'start', message: message });
-            if (options.ignoreErrors) {
-                try {
-                    const t0 = new Date();
-                    await moveMessage(browser, data, message);
-                    const t1 = new Date();
-                    progressListener({ type: 'done', message: message, time: t1.getTime() - t0.getTime() });
-                } catch (e) {
-                    progressListener({ type: 'failed', message: message, error: e });
-                }
-            } else {
+            try {
                 const t0 = new Date();
                 await moveMessage(browser, data, message);
                 const t1 = new Date();
                 progressListener({ type: 'done', message: message, time: t1.getTime() - t0.getTime() });
+            } catch (e) {
+                progressListener({ type: 'failed', message: message, error: e });
+                if (!options.ignoreErrors) {
+                    throw e;
+                }
+                if (failedMessageIDs.indexOf(message.id) < 0) {
+                    failedMessageIDs.push(message.id);
+                }
             }
             data.isFirstMessage = false;
             if (checkCancel()) {
