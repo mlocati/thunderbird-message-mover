@@ -1,0 +1,83 @@
+{
+  "extensionName": {
+    "message": "Message Mover"
+  },
+  "extensionDescription": {
+    "message": "Silently move messages and folders"
+  },
+  "sourceFolder": {
+    "message": "Source folder"
+  },
+  "destinationFolder": {
+    "message": "Destination folder"
+  },
+  "pleaseSelectAFolder": {
+    "message": "Please select a folder"
+  },
+  "noResultsForX": {
+    "message": "No results for {0}"
+  },
+  "messages": {
+    "message": "messages"
+  },
+  "delay": {
+    "message": "Wait time between messages"
+  },
+  "seconds": {
+    "message": "seconds"
+  },
+  "moveSubfolders": {
+    "message": "Move messages in sub-folders too"
+  },
+  "ignoreErrors": {
+    "message": "Ignore errors"
+  },
+  "autostart": {
+    "message": "Start/continue moving when Thunderbird starts"
+  },
+  "start": {
+    "message": "Start"
+  },
+  "stop": {
+    "message": "Stop"
+  },
+  "specifySource": {
+    "message": "Please specify the source folder."
+  },
+  "specifyDestination": {
+    "message": "Please specify the destination folder."
+  },
+  "sourceFolderNotFound": {
+    "message": "Unable to find the source folder specified."
+  },
+  "destinationFolderNotFound": {
+    "message": "Unable to find the destination folder specified."
+  },
+  "sourceEqualsDestination": {
+    "message": "The source and the destination folders are the same."
+  },
+  "sourceContainsDestination": {
+    "message": "The source folder contains the destination one (and this is not possible if you choose to move messages in sub-folders)."
+  },
+  "lastMovedMessage": {
+    "message": "Last moved message"
+  },
+  "author": {
+    "message": "Author"
+  },
+  "date": {
+    "message": "Date"
+  },
+  "subject": {
+    "message": "Subject"
+  },
+  "folder": {
+    "message": "Folder"
+  },
+  "time": {
+    "message": "Time"
+  },
+  "error": {
+    "message": "Error"
+  }
+}

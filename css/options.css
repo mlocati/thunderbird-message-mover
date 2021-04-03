@@ -1,0 +1,17 @@
+body.loading,
+body.loading * {
+  display: none;
+}
+body {
+  min-height: 450px;
+}
+#error-message {
+  white-space: pre-wrap;
+}
+#last-moved-message {
+  display: none;
+}
+#last-moved-message table th {
+  width: 1px;
+  white-space: nowrap;
+}

@@ -1,0 +1,37 @@
+{
+  "manifest_version": 2,
+  "default_locale": "en",
+  "name": "__MSG_extensionName__",
+  "description": "__MSG_extensionDescription__",
+  "version": "1.0",
+  "developer": {
+    "name": "Michele Locati",
+    "url": "https://mlocati.github.io"
+  },
+  "applications": {
+    "gecko": {
+      "id": "messagemover@michele.locati.it",
+      "strict_min_version": "78.0"
+    }
+  },
+  "icons": {
+    "64": "images/icon.svg",
+    "32": "images/icon.svg",
+    "16": "images/icon.svg"
+  },
+  "background": {
+    "page": "background.html"
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": false,
+    "browser_style": true
+  },
+  "permissions": [
+    "accountsRead",
+    "accountsFolders",
+    "messagesRead",
+    "messagesMove",
+    "storage"
+  ]
+}

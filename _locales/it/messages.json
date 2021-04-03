@@ -1,0 +1,83 @@
+{
+  "extensionName": {
+    "message": "Message Mover"
+  },
+  "extensionDescription": {
+    "message": "Sposta messaggi e cartelle silenziosamente"
+  },
+  "sourceFolder": {
+    "message": "Cartella di origine"
+  },
+  "destinationFolder": {
+    "message": "Cartella di destinazione"
+  },
+  "pleaseSelectAFolder": {
+    "message": "Selezionare una cartella"
+  },
+  "noResultsForX": {
+    "message": "Nessun risultato per {0}"
+  },
+  "messages": {
+    "message": "messaggi"
+  },
+  "delay": {
+    "message": "Attesa tra messaggi"
+  },
+  "seconds": {
+    "message": "secondi"
+  },
+  "moveSubfolders": {
+    "message": "Sposta anche i messaggi nelle sotto-cartelle"
+  },
+  "ignoreErrors": {
+    "message": "Ignora errori"
+  },
+  "autostart": {
+    "message": "Inizia/continua lo spostamento all'avvio di Thunderbird"
+  },
+  "start": {
+    "message": "Avvia"
+  },
+  "stop": {
+    "message": "Arresta"
+  },
+  "specifySource": {
+    "message": "Specificare la cartella di origine."
+  },
+  "specifyDestination": {
+    "message": "Specificare la cartella di destinazione."
+  },
+  "sourceFolderNotFound": {
+    "message": "Impossibile trovare la cartella di origine specificata."
+  },
+  "destinationFolderNotFound": {
+    "message": "Impossibile trovare la cartella di destinazione specificata."
+  },
+  "sourceEqualsDestination": {
+    "message": "Le cartelle di origine e di destinazione coincidono."
+  },
+  "sourceContainsDestination": {
+    "message": "La cartella di origine contiene quella di destinazione (e questo non è possibile se si seleziona di spostare anche i messaggi nelle sotto-cartelle)."
+  },
+  "lastMovedMessage": {
+    "message": "Ultimo messaggio spostato"
+  },
+  "author": {
+    "message": "Autore"
+  },
+  "date": {
+    "message": "Data"
+  },
+  "subject": {
+    "message": "Oggetto"
+  },
+  "folder": {
+    "message": "Cartella"
+  },
+  "time": {
+    "message": "Tempo"
+  },
+  "error": {
+    "message": "Errore"
+  }
+}
