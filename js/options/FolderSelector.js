@@ -58,8 +58,8 @@ function createOption(account, folder, text) {
 }
 
 class FolderSelector {
-    _disabled = false;
     constructor(browser, mmOptions, selector) {
+        this._disabled = false;
         this.browser = browser;
         this.mmOptions = mmOptions;
         this.$selects = $(selector);
