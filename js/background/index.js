@@ -24,6 +24,29 @@ function showError(e) {
   const mmOptions = createOptions(browser, await browser.storage.local.get('options'));
   Object.defineProperty(window, 'mmOptions', { get: () => mmOptions });
 
+  const folderPaneMenuID = browser.menus.create({
+    contexts: ['folder_pane'],
+    title: browser.i18n.getMessage('moveMessagesWithMessageMover'),
+    onclick: (e) => {
+      if (runState === RUNSTATE.STOPPED && e && e.selectedFolder) {
+        const accountID = e.selectedFolder.accountId;
+        const folderPath = e.selectedFolder.path;
+        if (accountID && folderPath && folderPath !== '/') {
+          if (mmOptions.sourceAccount !== accountID || mmOptions.sourceFolder !== folderPath) {
+            mmOptions
+              .setSource(accountID, folderPath)
+              .then(() => {
+                browser.runtime.openOptionsPage();
+                window.dispatchEvent(new CustomEvent('messagemover:sourcefolder:changed', { detail: e }));
+              })
+              ;
+            return;
+          }
+        }
+      }
+      browser.runtime.openOptionsPage();
+    },
+  });
   function startProcessing() {
     if (runState !== RUNSTATE.STOPPED) {
       return;

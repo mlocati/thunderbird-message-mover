@@ -32,6 +32,7 @@
     "accountsFolders",
     "messagesRead",
     "messagesMove",
+    "menus",
     "storage"
   ]
 }

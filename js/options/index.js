@@ -35,6 +35,9 @@ async function main() {
   const mmOptions = await getMMOptions();
   const folderSelector = new FolderSelector(browser, mmOptions, '#source,#destination');
   await folderSelector.refreshFolderList();
+  backgroundPage.addEventListener('messagemover:sourcefolder:changed', () => {
+    folderSelector.refreshSelected();
+  });
   $(document.body).removeClass('loading');
   $('#delay')
     .val(mmOptions.delay / 1000)

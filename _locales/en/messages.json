@@ -82,5 +82,8 @@
   },
   "error": {
     "message": "Error"
+  },
+  "moveMessagesWithMessageMover": {
+    "message": "&Move messages with Message Mover..."
   }
 }
