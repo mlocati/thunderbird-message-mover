@@ -14,16 +14,12 @@
 
         <div class="form-group">
             <label for="source"></label>
-            <select id="source" class="form-control" data-live-search="true">
-                <option value="" selected="selected"></option>
-            </select>
+            <select id="source" data-which="source" class="form-control" data-live-search="true"></select>
         </div>
 
         <div class="form-group">
             <label for="destination"></label>
-            <select id="destination" class="form-control" data-live-search="true">
-                <option value="" selected="selected"></option>
-            </select>
+            <select id="destination" data-which="destination" class="form-control" data-live-search="true"></select>
         </div>
 
         <div class="form-group">
@@ -50,6 +46,13 @@
             <input type="checkbox" class="form-check-input" id="autostart" />
             <label class="form-check-label ml-1" for="autostart"></label>
         </div>
+
+        <div class="pull-right">
+            <button type="button" class="btn btn-danger" id="stop"></button>
+            <button type="submit" class="btn btn-primary" id="start"></button>
+        </div>
+
+        <div class="alert alert-danger invisible my-3" id="error-message"></div>
 
         <section id="last-moved-message">
             <h5></h5>
@@ -82,19 +85,13 @@
                 </tbody>
             </table>
         </section>
-    
-        <div class="pull-right">
-            <button type="button" class="btn btn-danger" id="stop"></button>
-            <button type="submit" class="btn btn-primary" id="start"></button>
-        </div>
 
-        <div class="alert alert-danger invisible my-3" id="error-message"></div>
     </div>
 
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/bootstrap-select.js"></script>
-    <script src="js/options.js"></script>
+    <script src="js/options/index.js" type="module"></script>
 </body>
 
 </html>
