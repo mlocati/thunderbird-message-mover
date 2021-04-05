@@ -35,6 +35,9 @@
   "autostart": {
     "message": "Start/continue moving when Thunderbird starts"
   },
+  "refreshFolders": {
+    "message": "Refresh folder list"
+  },
   "start": {
     "message": "Start"
   },

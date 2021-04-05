@@ -22,6 +22,7 @@ function setUITexts() {
   $('label[for="move-subfolders"').text(t('moveSubfolders'));
   $('label[for="ignore-errors"').text(t('ignoreErrors'));
   $('label[for="autostart"').text(t('autostart'));
+  $('#refresh-folders').text(t('refreshFolders'));
   $('#stop').text(t('stop'));
   $('#start').text(t('start'));
   ['author', 'date', 'subject', 'folder', 'time', 'error'].forEach((field) => {
@@ -52,7 +53,7 @@ async function main() {
     .on('input', function () {
       mmOptions
         .setMoveSubfolders(this.checked)
-        .catch((e) => { console.error('Error saving moveSubfolders', e) })
+        .catch((e) => { console.error('Error saving moveSubfolders', e); })
         ;
     })
     ;
@@ -61,7 +62,7 @@ async function main() {
     .on('input', function () {
       mmOptions
         .setIgnoreErrors(this.checked)
-        .catch((e) => { console.error('Error saving ignoreErrors', e) })
+        .catch((e) => { console.error('Error saving ignoreErrors', e); })
         ;
     })
     ;
@@ -70,11 +71,18 @@ async function main() {
     .on('input', function () {
       mmOptions
         .setAutostart(this.checked)
-        .catch((e) => { console.error('Error saving autostart', e) })
+        .catch((e) => { console.error('Error saving autostart', e); })
         ;
     })
     ;
 
+  $('#refresh-folders')
+    .on('click', () => {
+      folderSelector
+        .refreshFolderList()
+        .catch((e) => { console.error('Error refreshinf folders', e); })
+    })
+    ;
   $('#stop')
     .on('click', () => {
       backgroundPage.mmStop();
@@ -87,7 +95,7 @@ async function main() {
     ;
   function updateState() {
     folderSelector.disabled = backgroundPage.mmRunState !== backgroundPage.MM_RUNSTATE.STOPPED;
-    $('#delay,#start,#move-subfolders,#ignore-errors').prop('disabled', backgroundPage.mmRunState !== backgroundPage.MM_RUNSTATE.STOPPED);
+    $('#delay,#start,#move-subfolders,#ignore-errors,#refresh-folders').prop('disabled', backgroundPage.mmRunState !== backgroundPage.MM_RUNSTATE.STOPPED);
     $('label[for="source"],label[for="destination"],label[for="delay"]').toggleClass('text-muted', backgroundPage.mmRunState !== backgroundPage.MM_RUNSTATE.STOPPED);
     $('#stop').prop('disabled', backgroundPage.mmRunState !== backgroundPage.MM_RUNSTATE.RUNNING);
   }

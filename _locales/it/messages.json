@@ -35,6 +35,9 @@
   "autostart": {
     "message": "Inizia/continua lo spostamento all'avvio di Thunderbird"
   },
+  "refreshFolders": {
+    "message": "Aggiorna elenco cartelle"
+  },
   "start": {
     "message": "Avvia"
   },
