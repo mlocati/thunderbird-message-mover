@@ -1,3 +1,36 @@
+function sortAccountsAndFolders(accounts) {
+    accounts.sort((a, b) => {
+        const aName = a.name.toLowerCase();
+        const bName = b.name.toLowerCase();
+        if (aName < bName) {
+            return -1;
+        }
+        if (aName < bName) {
+            return -1;
+        }
+        return 0;
+    });
+    for (let account of accounts) {
+        sortFolders(account.folders);
+    }
+}
+function sortFolders(folders) {
+    folders.sort((a, b) => {
+        const aName = a.name.toLowerCase();
+        const bName = b.name.toLowerCase();
+        if (aName < bName) {
+            return -1;
+        }
+        if (aName < bName) {
+            return -1;
+        }
+        return 0;
+    });
+    for (let folder of folders) {
+        sortFolders(folder.subFolders);
+    }
+}
+
 function addAccount($select, account) {
     const $optgroup = $('<optgroup />').attr('label', account.name);
     $select.append($optgroup);
@@ -49,6 +82,7 @@ class FolderSelector {
     }
     async refreshFolderList() {
         const accounts = await this.browser.accounts.list();
+        sortAccountsAndFolders(accounts);
         this.$selects.empty().append($('<option value="" selected="selected" />'));
         for (let select of this.$selects) {
             const $select = $(select);
