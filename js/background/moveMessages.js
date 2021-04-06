@@ -1,6 +1,9 @@
 async function moveMessage(browser, data, message) {
     return browser.messages.move([message.id], data.destination.folder);
 }
+async function compactFolder(browser, account, folder) {
+    await browser.MessageMover.compactFolder(account.id, folder.path);
+}
 async function getOrCreateSubfolder(browser, account, parentFolder, childName) {
     for (let subFolder of parentFolder.subFolders) {
         if (subFolder.name === childName) {
@@ -37,6 +40,7 @@ async function moveMessages(browser, data, options, checkCancel, progressListene
         } else if (page.id) {
             page = await browser.messages.continueList(page.id);
         } else {
+            await compactFolder(browser, data.source.account, data.source.folder);
             page = await browser.messages.list(data.source.folder);
             if (page.messages.length <= failedMessageIDs.length) {
                 break;

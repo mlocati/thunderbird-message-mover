@@ -34,5 +34,15 @@
     "messagesMove",
     "menus",
     "storage"
-  ]
+  ],
+  "experiment_apis": {
+    "MessageMover": {
+      "schema": "api/schema.json",
+      "parent": {
+        "scopes": ["addon_parent"],
+        "paths": [["MessageMover"]],
+        "script": "api/implementation.js"
+      }
+    }
+  }
 }
