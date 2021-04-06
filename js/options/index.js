@@ -98,7 +98,7 @@ async function main() {
     ;
   function updateState() {
     folderSelector.disabled = backgroundPage.mmRunState !== backgroundPage.MM_RUNSTATE.STOPPED;
-    $('#delay,#start,#move-subfolders,#ignore-errors,#refresh-folders').prop('disabled', backgroundPage.mmRunState !== backgroundPage.MM_RUNSTATE.STOPPED);
+    $('#delay,#start,#move-subfolders,#refresh-folders').prop('disabled', backgroundPage.mmRunState !== backgroundPage.MM_RUNSTATE.STOPPED);
     $('label[for="source"],label[for="destination"],label[for="delay"]').toggleClass('text-muted', backgroundPage.mmRunState !== backgroundPage.MM_RUNSTATE.STOPPED);
     $('#stop').prop('disabled', backgroundPage.mmRunState !== backgroundPage.MM_RUNSTATE.RUNNING);
   }
