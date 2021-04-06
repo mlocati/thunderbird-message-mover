@@ -5,6 +5,12 @@
   "extensionDescription": {
     "message": "Silently move messages and folders"
   },
+  "generalOptions": {
+    "message": "General options"
+  },
+  "moveOperation": {
+    "message": "Move operation"
+  },
   "sourceFolder": {
     "message": "Source folder"
   },

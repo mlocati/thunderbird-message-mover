@@ -3,7 +3,7 @@ body.loading * {
   display: none;
 }
 body {
-  min-height: 450px;
+  min-height: 600px;
 }
 #error-message-body {
   white-space: pre-wrap;

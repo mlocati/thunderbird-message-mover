@@ -15,6 +15,8 @@ async function getMMOptions() {
 }
 
 function setUITexts() {
+  $('#section-general-options').text(t('generalOptions'));
+  $('#section-move-operation').text(t('moveOperation'));
   $('label[for="source"]').text(t('sourceFolder'));
   $('label[for="destination"]').text(t('destinationFolder'));
   $('label[for="delay"').text(t('delay'));

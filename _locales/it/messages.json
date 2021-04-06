@@ -5,6 +5,12 @@
   "extensionDescription": {
     "message": "Sposta messaggi e cartelle silenziosamente"
   },
+  "generalOptions": {
+    "message": "Opzioni generali"
+  },
+  "moveOperation": {
+    "message": "Spostamento"
+  },
   "sourceFolder": {
     "message": "Cartella di origine"
   },
