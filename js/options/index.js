@@ -144,10 +144,9 @@ async function main() {
     } else {
       $('#message-time').empty();
     }
+    $('#message-error').empty();
     if (e.detail.error) {
-      $('#message-error').empty(e.detail.error.message || e.detail.error.toString());
-    } else {
-      $('#message-error').empty();
+      $('#message-error').text(e.detail.error.message.toString() || e.detail.error.toString());
     }
     $('#last-moved-message').show();
   });

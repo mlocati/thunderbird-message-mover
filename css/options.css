@@ -15,3 +15,6 @@ body {
   width: 1px;
   white-space: nowrap;
 }
+#message-error {
+  white-space: pre-wrap;
+}
