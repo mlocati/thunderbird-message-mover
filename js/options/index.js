@@ -122,19 +122,12 @@ async function main() {
     updateState();
     $('#autostart').prop('checked', mmOptions.autostart);
   });
-  let errorTimer = null;
   backgroundPage.addEventListener('messagemover:error', function (e) {
-    if (errorTimer) {
-      clearTimeout(errorTimer);
-    }
     $('#error-message-body')
       .empty()
       .text(e.detail ? (e.detail.message || e.detail).toString() : '???')
       ;
     $('#error-message').removeClass('invisible');
-    errorTimer = setInterval(() => {
-      $error.addClass('invisible')
-    }, 2000);
   });
 
   backgroundPage.addEventListener('messagemover:movingmessage', function (e) {
