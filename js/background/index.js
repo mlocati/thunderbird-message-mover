@@ -27,6 +27,7 @@ function showError(e) {
   const folderPaneMenuID = browser.menus.create({
     contexts: ['folder_pane'],
     title: browser.i18n.getMessage('moveMessagesWithMessageMover'),
+    visible: mmOptions.showFolderPaneMenuItem,
     onclick: (e) => {
       if (runState === RUNSTATE.STOPPED && e && e.selectedFolder) {
         const accountID = e.selectedFolder.accountId;
@@ -95,6 +96,11 @@ function showError(e) {
     }
   }
 
+  window.updateFolderPaneMenuItem = () => {
+    browser.menus.update(folderPaneMenuID, {
+      visible: mmOptions.showFolderPaneMenuItem,
+    });
+  };
   window.mmStart = () => {
     startProcessing();
   };

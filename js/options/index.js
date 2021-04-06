@@ -21,6 +21,7 @@ function setUITexts() {
   $('#delay-suffix').text(t('seconds'));
   $('label[for="move-subfolders"').text(t('moveSubfolders'));
   $('label[for="ignore-errors"').text(t('ignoreErrors'));
+  $('label[for="show-folderpane-menuitem"').text(t('showFolderPaneMenuItem'));
   $('label[for="autostart"').text(t('autostart'));
   $('#refresh-folders').text(t('refreshFolders'));
   $('#stop').text(t('stop'));
@@ -66,6 +67,18 @@ async function main() {
       mmOptions
         .setIgnoreErrors(this.checked)
         .catch((e) => { console.error('Error saving ignoreErrors', e); })
+        ;
+    })
+    ;
+  $('#show-folderpane-menuitem')
+    .prop('checked', mmOptions.showFolderPaneMenuItem)
+    .on('input', function () {
+      mmOptions
+        .setShowFolderPaneMenuItem(this.checked)
+        .then((e) => {
+          backgroundPage.updateFolderPaneMenuItem();
+        })
+        .catch((e) => { console.error('Error saving showFolderPaneMenuItem', e); })
         ;
     })
     ;

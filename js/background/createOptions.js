@@ -2,6 +2,7 @@ const MAX_INT = 2147483647;
 const DEFAULT_DELAY = 0;
 const DEFAULT_MOVE_SUBFOLDERS = true;
 const DEFAULT_IGNORE_ERRORS = false;
+const DEFAULT_SHOWFOLDERPANEMENUITEM = true;
 const DEFAULT_AUTOSTART = false;
 const FIELDS = [
     'sourceAccount',
@@ -11,6 +12,7 @@ const FIELDS = [
     'delay',
     'moveSubfolders',
     'ignoreErrors',
+    'showFolderPaneMenuItem',
     'autostart',
 ];
 
@@ -28,6 +30,8 @@ function parse(field, value) {
             return typeof value === 'boolean' ? value : DEFAULT_MOVE_SUBFOLDERS;
         case 'ignoreErrors':
             return typeof value === 'boolean' ? value : DEFAULT_IGNORE_ERRORS;
+        case 'showFolderPaneMenuItem':
+            return typeof value === 'boolean' ? value : DEFAULT_SHOWFOLDERPANEMENUITEM;
         case 'autostart':
             return typeof value === 'boolean' ? value : DEFAULT_AUTOSTART;
     }

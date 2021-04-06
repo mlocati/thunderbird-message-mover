@@ -32,6 +32,9 @@
   "ignoreErrors": {
     "message": "Ignore errors"
   },
+  "showFolderPaneMenuItem": {
+    "message": "Show an item in the context menu of the folder pane"
+  },
   "autostart": {
     "message": "Start/continue moving when Thunderbird starts"
   },
