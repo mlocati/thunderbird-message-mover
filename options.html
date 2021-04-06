@@ -59,10 +59,15 @@
             <div class="float-right">
                 <button type="button" class="btn btn-danger" id="stop"></button>
                 <button type="submit" class="btn btn-primary" id="start"></button>
-            </div>    
+            </div>
         </div>
 
-        <div class="alert alert-danger invisible my-3" id="error-message"></div>
+        <div class="alert alert-danger invisible my-3" id="error-message">
+            <span id="error-message-body"></span>
+            <button type="button" class="close"  id="error-message-close">
+                <span>&times;</span>
+            </button>
+        </div>
 
         <section id="last-moved-message">
             <h5></h5>

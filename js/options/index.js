@@ -92,23 +92,23 @@ async function main() {
     })
     ;
 
-  $('#refresh-folders')
-    .on('click', () => {
-      folderSelector
-        .refreshFolderList()
-        .catch((e) => { console.error('Error refreshinf folders', e); })
-    })
-    ;
-  $('#stop')
-    .on('click', () => {
-      backgroundPage.mmStop();
-    })
-    ;
-  $('#start')
-    .on('click', () => {
-      backgroundPage.mmStart();
-    })
-    ;
+  $('#refresh-folders').on('click', () => {
+    folderSelector
+      .refreshFolderList()
+      .catch((e) => { console.error('Error refreshinf folders', e); })
+  });
+  $('#stop').on('click', () => {
+    backgroundPage.mmStop();
+  });
+  $('#start').on('click', () => {
+    $('#error-message').addClass('invisible');
+    backgroundPage.mmStart();
+  });
+  $('#error-message-close').on('click', (e) => {
+    e.preventDefault();
+    $('#error-message').addClass('invisible');
+  });
+
   function updateState() {
     folderSelector.disabled = backgroundPage.mmRunState !== backgroundPage.MM_RUNSTATE.STOPPED;
     $('#delay,#start,#move-subfolders,#refresh-folders').prop('disabled', backgroundPage.mmRunState !== backgroundPage.MM_RUNSTATE.STOPPED);
@@ -125,12 +125,11 @@ async function main() {
     if (errorTimer) {
       clearTimeout(errorTimer);
     }
-    const $error = $('#error-message');
-    $error
+    $('#error-message-body')
       .empty()
       .text(e.detail ? (e.detail.message || e.detail).toString() : '???')
-      .removeClass('invisible')
       ;
+    $('#error-message').removeClass('invisible');
     errorTimer = setInterval(() => {
       $error.addClass('invisible')
     }, 2000);

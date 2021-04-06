@@ -5,7 +5,7 @@ body.loading * {
 body {
   min-height: 450px;
 }
-#error-message {
+#error-message-body {
   white-space: pre-wrap;
 }
 #last-moved-message {
