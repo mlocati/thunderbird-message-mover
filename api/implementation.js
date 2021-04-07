@@ -43,14 +43,15 @@ var MessageMover = class extends ExtensionCommon.ExtensionAPI {
                   OnStopRunningUrl(aUrl, aExitCode) {
                     if (aExitCode !== 0) {
                       reject(`Error compacting ${aUrl}: ${aExitCode}`);
+                    } else {
+                      resolve(true);
                     }
-                    resolve(true);
                   },
                 },
                 null
               );
             } catch (e) {
-              reject(e);
+              reject(e.message ? e.message.toString() : e.toString());
             }
           });
         }
