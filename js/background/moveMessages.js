@@ -3,6 +3,7 @@ async function moveMessage(browser, data, message) {
 }
 async function compactFolder(browser, account, folder) {
     await browser.MessageMover.compactFolder(account.id, folder.path);
+    await new Promise(resolve => setTimeout(resolve, 500));
 }
 async function getOrCreateSubfolder(browser, account, parentFolder, childName) {
     for (let subFolder of parentFolder.subFolders) {
