@@ -42,7 +42,7 @@ async function moveMessages(browser, data, options, checkCancel, progressListene
             if (page.messages.length <= failedMessageIDs.length) {
                 break;
             }
-            let messageList = JSON.stringify(page.messages);
+            let messageList = JSON.stringify(page.messages).replace(/"id":\d+/g, '"id":0');
             if (messageList === lastMessageList) {
                 break;
             }
