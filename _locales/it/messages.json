@@ -26,6 +26,12 @@
   "messages": {
     "message": "messaggi"
   },
+  "onlyMessagesFrom": {
+    "message": "Sposta solo i messaggi a partire dal"
+  },
+  "onlyMessagesTo": {
+    "message": "Sposta solo i messaggi fino al"
+  },
   "delay": {
     "message": "Attesa tra messaggi"
   },
@@ -70,6 +76,9 @@
   },
   "sourceContainsDestination": {
     "message": "La cartella di origine contiene quella di destinazione (e questo non è possibile se si seleziona di spostare anche i messaggi nelle sotto-cartelle)."
+  },
+  "endDateBeforeStartDate": {
+    "message": "La data finale è prima di quella iniziale"
   },
   "lastMovedMessage": {
     "message": "Ultimo messaggio spostato"

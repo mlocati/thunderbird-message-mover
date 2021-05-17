@@ -1,4 +1,5 @@
 import FolderSelector from './FolderSelector.js';
+import MessagesDateLimit from './MessagesDateLimit.js';
 
 const browser = window.browser.extension.getBackgroundPage().browser;
 const t = browser.i18n.getMessage;
@@ -19,6 +20,8 @@ function setUITexts() {
   $('#section-move-operation').text(t('moveOperation'));
   $('label[for="source"]').text(t('sourceFolder'));
   $('label[for="destination"]').text(t('destinationFolder'));
+  $('label[for="from-date-use').text(t('onlyMessagesFrom'));
+  $('label[for="to-date-use').text(t('onlyMessagesTo'));
   $('label[for="delay"').text(t('delay'));
   $('#delay-suffix').text(t('seconds'));
   $('label[for="move-subfolders"').text(t('moveSubfolders'));
@@ -42,6 +45,8 @@ async function main() {
     folderSelector.refreshSelected();
   });
   $(document.body).removeClass('loading');
+  const fromMessagesDateLimit = new MessagesDateLimit(mmOptions, 'from')
+  const toMessagesDateLimit = new MessagesDateLimit(mmOptions, 'to');
   $('#delay')
     .val(mmOptions.delay / 1000)
     .on('input', function () {
@@ -113,6 +118,8 @@ async function main() {
 
   function updateState() {
     folderSelector.disabled = backgroundPage.mmRunState !== backgroundPage.MM_RUNSTATE.STOPPED;
+    fromMessagesDateLimit.processing = backgroundPage.mmRunState !== backgroundPage.MM_RUNSTATE.STOPPED;
+    toMessagesDateLimit.processing = backgroundPage.mmRunState !== backgroundPage.MM_RUNSTATE.STOPPED;
     $('#delay,#start,#move-subfolders,#refresh-folders').prop('disabled', backgroundPage.mmRunState !== backgroundPage.MM_RUNSTATE.STOPPED);
     $('label[for="source"],label[for="destination"],label[for="delay"]').toggleClass('text-muted', backgroundPage.mmRunState !== backgroundPage.MM_RUNSTATE.STOPPED);
     $('#stop').prop('disabled', backgroundPage.mmRunState !== backgroundPage.MM_RUNSTATE.RUNNING);

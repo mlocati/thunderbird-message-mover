@@ -1,6 +1,7 @@
 async function moveMessage(browser, data, message) {
     return browser.messages.move([message.id], data.destination.folder);
 }
+
 async function getOrCreateSubfolder(browser, account, parentFolder, childName) {
     for (let subFolder of parentFolder.subFolders) {
         if (subFolder.name === childName) {
@@ -9,6 +10,7 @@ async function getOrCreateSubfolder(browser, account, parentFolder, childName) {
     }
     return await browser.folders.create(parentFolder, childName);
 }
+
 async function createSubData(browser, data, subFolder) {
     return {
         source: {
@@ -22,6 +24,31 @@ async function createSubData(browser, data, subFolder) {
         isFirstMessage: typeof data.isFirstMessage === 'undefined' ? true : data.isFirstMessage,
     }
 }
+
+function filterMessage(options, message) {
+    if (message.date instanceof Date) {
+        if (options.messagesFrom && options.messagesFrom > message.date) {
+            return false;
+        }
+        if (options.messagesTo && options.messagesTo < message.date) {
+            return false;
+        }
+    } else if (options.messagesFrom || options.messagesTo) {
+        return false;
+    }
+    return true;
+}
+
+function filterMessages(options, messages) {
+    const result = [];
+    for (let message of messages) {
+        if (filterMessage(options, message)) {
+            result.push(message);
+        }
+    }
+    return result;
+}
+
 async function moveMessages(browser, data, options, checkCancel, progressListener) {
     let page = null;
     let lastMessageList = null;
@@ -51,7 +78,7 @@ async function moveMessages(browser, data, options, checkCancel, progressListene
         if (checkCancel()) {
             return false;
         }
-        for (let message of page.messages) {
+        for (let message of filterMessages(options, page.messages)) {
             if (checkCancel()) {
                 return false;
             }

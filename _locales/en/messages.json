@@ -26,6 +26,12 @@
   "messages": {
     "message": "messages"
   },
+  "onlyMessagesFrom": {
+    "message": "Move only messages dating from"
+  },
+  "onlyMessagesTo": {
+    "message": "Move only messages dating to"
+  },
   "delay": {
     "message": "Wait time between messages"
   },
@@ -70,6 +76,9 @@
   },
   "sourceContainsDestination": {
     "message": "The source folder contains the destination one (and this is not possible if you choose to move messages in sub-folders)."
+  },
+  "endDateBeforeStartDate": {
+    "message": "The end date occurs before the start date"
   },
   "lastMovedMessage": {
     "message": "Last moved message"

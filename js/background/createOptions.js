@@ -9,6 +9,8 @@ const FIELDS = [
     'sourceFolder',
     'destinationAccount',
     'destinationFolder',
+    'messagesFrom',
+    'messagesTo',
     'delay',
     'moveSubfolders',
     'ignoreErrors',
@@ -34,6 +36,30 @@ function parse(field, value) {
             return typeof value === 'boolean' ? value : DEFAULT_SHOWFOLDERPANEMENUITEM;
         case 'autostart':
             return typeof value === 'boolean' ? value : DEFAULT_AUTOSTART;
+        case 'messagesFrom':
+        case 'messagesTo':
+            let date = null;
+            if (value instanceof Date) {
+                date = new Date();
+                date.setTime(value.valueOf());
+            } else if (typeof value === 'string') {
+                const match = /^(?<y>\d{4})-(?<m>[0-1]?\d)-(?<d>[0-3]?\d)(T|$)/.exec(value);
+                if (match) {
+                    date = new Date(
+                        parseInt(match.groups.y, 10),
+                        parseInt(match.groups.m, 10) - 1,
+                        parseInt(match.groups.d, 10)
+                    );
+                }
+            }
+            if (date === null) {
+                return null;
+            }
+            date.setHours(field === 'messagesTo' ? 23 : 0);
+            date.setMinutes(field === 'messagesTo' ? 59 : 0);
+            date.setSeconds(field === 'messagesTo' ? 59 : 0);
+            date.setMilliseconds(field === 'messagesTo' ? 999 : 0);
+            return date;
     }
     throw new Error(`Unrecognized field: ${field}`);
 }
@@ -117,6 +143,9 @@ export default function createOptions(browser, rawOptionValues) {
                     throw new Error(t('sourceContainsDestination'));
                 }
             }
+        }
+        if (current.messagesFrom !== null && current.messagesTo !== null && current.messagesFrom > current.messagesTo) {
+            throw new Error(t('endDateBeforeStartDate'));
         }
         return result;
     }
