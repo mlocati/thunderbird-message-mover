@@ -35,6 +35,9 @@
   "delay": {
     "message": "Attesa tra messaggi"
   },
+  "runEvery": {
+    "message": "Avvia automaticamente ogni"
+  },
   "seconds": {
     "message": "secondi"
   },

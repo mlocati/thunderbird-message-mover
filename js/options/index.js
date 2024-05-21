@@ -24,6 +24,8 @@ function setUITexts() {
   $('label[for="to-date-use').text(t('onlyMessagesTo'));
   $('label[for="delay"').text(t('delay'));
   $('#delay-suffix').text(t('seconds'));
+  $('label[for="runEvery"').text(t('runEvery'));
+  $('#runEvery-suffix').text(t('seconds'));
   $('label[for="move-subfolders"').text(t('moveSubfolders'));
   $('label[for="ignore-errors"').text(t('ignoreErrors'));
   $('label[for="show-folderpane-menuitem"').text(t('showFolderPaneMenuItem'));
@@ -53,12 +55,24 @@ async function main() {
       mmOptions
         .setDelay(parseFloat($.trim(this.value)) * 1000)
         .catch((e) => { console.error('Error saving delay', e) })
-        ;
+      ;
     })
     .on('blur', function () {
       this.value = mmOptions.delay / 1000;
     })
-    ;
+  ;
+  $('#runEvery')
+    .val(mmOptions.runEvery ? mmOptions.runEvery.toString() : '')
+    .on('input', function () {
+      mmOptions
+        .setRunEvery(parseFloat($.trim(this.value)))
+        .catch((e) => { console.error('Error saving runEvery', e) })
+      ;
+    })
+    .on('blur', function () {
+      this.value = mmOptions.runEvery ? mmOptions.runEvery.toString() : '';
+    })
+  ;
   $('#move-subfolders')
     .prop('checked', mmOptions.moveSubfolders)
     .on('input', function () {

@@ -4,6 +4,7 @@ const DEFAULT_MOVE_SUBFOLDERS = true;
 const DEFAULT_IGNORE_ERRORS = false;
 const DEFAULT_SHOWFOLDERPANEMENUITEM = true;
 const DEFAULT_AUTOSTART = false;
+const DEFAULT_RUNEVERY = 0;
 const FIELDS = [
     'sourceAccount',
     'sourceFolder',
@@ -16,6 +17,7 @@ const FIELDS = [
     'ignoreErrors',
     'showFolderPaneMenuItem',
     'autostart',
+    'runEvery',
 ];
 
 function parse(field, value) {
@@ -60,6 +62,9 @@ function parse(field, value) {
             date.setSeconds(field === 'messagesTo' ? 59 : 0);
             date.setMilliseconds(field === 'messagesTo' ? 999 : 0);
             return date;
+        case 'runEvery':
+            value = typeof value === 'number' && isFinite(value) ? Math.round(value) : null;
+            return value && value > 0 ? Math.min(MAX_INT, value) : DEFAULT_RUNEVERY;
     }
     throw new Error(`Unrecognized field: ${field}`);
 }

@@ -12,10 +12,6 @@ window.MM_RUNSTATE = RUNSTATE;
 
 let runState = RUNSTATE.INITIALIZING;
 Object.defineProperty(window, 'mmRunState', { get: () => runState });
-function setRunState(value) {
-  runState = value;
-  window.dispatchEvent(new CustomEvent('messagemover:runstate:changed'));
-}
 
 function showError(e) {
   window.dispatchEvent(new CustomEvent('messagemover:error', { detail: e }));
@@ -23,6 +19,16 @@ function showError(e) {
 (async () => {
   const mmOptions = createOptions(browser, await browser.storage.local.get('options'));
   Object.defineProperty(window, 'mmOptions', { get: () => mmOptions });
+
+  function setRunState(value) {
+    runState = value;
+    window.dispatchEvent(new CustomEvent('messagemover:runstate:changed'));
+    if (runState === RUNSTATE.STOPPED && mmOptions.runEvery > 0) {
+      setTimeout(() => {
+        startProcessing();
+      }, mmOptions.runEvery * 1000)
+    }
+  }
 
   const folderPaneMenuID = browser.menus.create({
     contexts: ['folder_pane'],
